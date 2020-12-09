@@ -14,6 +14,11 @@ export class PhotosComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
+    /* console.log('change photos');
+    console.log(this.photos.length); */
+
+
+
     // Verifica se houve mudança na inbound property photos. Caso não tenha ocorrido, ela não é setada em changes
     if (changes.photos) {
       this.rows = this.groupColumns(this.photos);

@@ -27,8 +27,15 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 
   // Ocorre depois da instanciação e depois de receber as inbound properties
   ngOnInit(): void {
+    console.log('init photo-list');
+
+    console.log(this.photos.length);
+
+
     this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data.photos;
+    console.log(this.photos.length);
+
     this.debounce
       .pipe(debounceTime(300))
       .subscribe(filter => this.filter = filter);
