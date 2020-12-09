@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
 import { SignInComponent } from './signin/signin.component';
 
 @NgModule({
@@ -9,7 +10,8 @@ import { SignInComponent } from './signin/signin.component';
   ],
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    VMessageModule
   ]
 })
 export class HomeModule {
