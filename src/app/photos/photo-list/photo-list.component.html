@@ -1,4 +1,8 @@
-<ap-search></ap-search>
+<ap-search
+  (onTyping)="filter = $event"
+  [value]="filter"
+  >
+</ap-search>
 <ap-photos [photos]="photos | filterByDescription: filter"></ap-photos>
 <ap-load-button
   [hasMore]="hasMore"

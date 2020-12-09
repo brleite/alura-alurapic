@@ -38,6 +38,7 @@ export class PhotoListComponent implements OnInit {
     this.photoService
       .listFromUserPaginated(this.userName, ++this.currentPage)
       .subscribe(photos => {
+        this.filter = '';
         // Não funciona porque o componente não sabe que o this.photos mudou, já que a referência é a mesma
         // this.photos.push(...photos);
         this.photos = this.photos.concat(photos);
