@@ -9,7 +9,7 @@ export class UserNotTakenValidatorService {
   constructor(private signupService: SignUpService) {}
 
   checkUserNameTaken() {
-    return (control:AbstractControl) => {
+    return (control: AbstractControl) => {
       return control
         .valueChanges
         .pipe(debounceTime(300))
