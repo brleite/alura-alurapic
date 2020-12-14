@@ -16,9 +16,12 @@
   <div class="form-group">
     <input formControlName="userName" class="form-control" placeholder="user name">
     <ap-vmessage *ngIf="signupForm.get('userName').errors?.required" text="User name is required"></ap-vmessage>
-    <ap-vmessage *ngIf="signupForm.get('userName').errors?.pattern" text="Must be lower case"></ap-vmessage>
+    <!-- <ap-vmessage *ngIf="signupForm.get('userName').errors?.pattern" text="Must be lower case"></ap-vmessage> -->
+    <ap-vmessage *ngIf="signupForm.get('userName').errors?.lowerCase" text="Must be lower case"></ap-vmessage>
     <ap-vmessage *ngIf="signupForm.get('userName').errors?.minlength" text="Minimun length is 2"></ap-vmessage>
     <ap-vmessage *ngIf="signupForm.get('userName').errors?.maxlength" text="Maximum length is 30"></ap-vmessage>
+    <ap-vmessage *ngIf="signupForm.get('userName').errors?.userNameTaken" text="Username already taken"></ap-vmessage>
+    <small *ngIf="signupForm.get('userName').valid" class="text-success">User available!</small>
   </div>
 
   <div class="form-group">
@@ -28,7 +31,7 @@
     <ap-vmessage *ngIf="signupForm.get('password').errors?.maxlength" text="Maximum length is 14"></ap-vmessage>
   </div>
 
-  <button class="btn btn-primary btn-block">Register</button>
+  <button [disabled]="signupForm.invalid || signupForm.pending" class="btn btn-primary btn-block">Register</button>
 
   <p>Already a user?<a [routerLink]="['']">Sign In!</a></p>
 </form>
