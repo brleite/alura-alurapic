@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'ap-photo-form',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./photo-form.component.css']
 })
 export class PhotoFormComponent implements OnInit {
+
+  formGroupTmp: FormGroup;
 
   constructor() { }
 
