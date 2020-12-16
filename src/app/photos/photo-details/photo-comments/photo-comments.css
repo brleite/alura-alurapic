@@ -1,0 +1,4 @@
+.comment-list {
+  height: 30vh; /* 50% da tela visível */
+  overflow-y: auto; /* não dá certo quando se usa % no height. Por isso, utiliza-se vh */
+}
