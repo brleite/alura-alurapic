@@ -28,10 +28,18 @@ export class PhotoListComponent implements OnInit {
 
     console.log(this.photos.length);
 
-
+    /**
+     *
+     Componentes que atendem mais de uma rota, como em rotas parametrizadas, por exemplo, apresentam um comportamento inesperado com relação à lógica do OnInit. O ngOnInit é executado apenas uma vez quando o componente é carregado para a rota. Mas se a rota mudar e o componente for o mesmo, ele não será recarregado e o código em ngOnInit não será executado novamente. Uma solução é monitorar alterações nos parâmetros da rota.
+     */
+    /*
     this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data.photos;
-    console.log(this.photos.length);
+    */
+   this.activatedRoute.params.subscribe(params => {
+     this.userName = params.userName;
+     this.photos = this.activatedRoute.snapshot.data['photos'];
+   })
   }
 
   load() {

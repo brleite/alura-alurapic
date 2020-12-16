@@ -1,7 +1,8 @@
-import { stringify } from "@angular/compiler/src/util";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
+import { switchMap, tap } from 'rxjs/operators';
+
 import { PhotoComment } from "../../photo/photo-comment";
 import { PhotoService } from "../../photo/photo.service";
 
@@ -32,10 +33,15 @@ export class PhotoCommentsComponent implements OnInit {
   save() {
     const comment = this.commentForm.get('comment').value as string;
 
-    this.photoService.addComment(this.photoId, comment)
-      .subscribe(() => {
+    console.log('chamei');
+
+    this.comments$ = this.photoService
+      .addComment(this.photoId, comment)
+      // Muda o fluxo do primeiro Observable (addComments) para o segundo (getComments)
+      .pipe(switchMap(() => this.photoService.getComments(this.photoId)))
+      // Antes do getComments retornar o Observable, é possível executar o código no tap
+      .pipe(tap(() => {
         this.commentForm.reset();
-        alert('Comentário adicionado com sucesso')
-      })
+      }));
   }
 }
