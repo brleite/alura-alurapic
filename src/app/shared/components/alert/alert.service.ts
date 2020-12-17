@@ -4,7 +4,7 @@ import { Alert, AlertType } from "./alert";
 
 @Injectable({providedIn: 'root'})
 export class AlertService {
-  alertSubject: Subject<Alert>;
+  alertSubject: Subject<Alert> = new Subject<Alert>();
 
   success(message:string) {
     this.alert(AlertType.SUCCESS, message);
