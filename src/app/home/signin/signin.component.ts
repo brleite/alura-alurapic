@@ -17,8 +17,8 @@ export class SignInComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private platformDetectorService: PlatformDetectorService,
-    private titleService: Title) {
+    private platformDetectorService: PlatformDetectorService/* ,
+    private titleService: Title */) {
 
   }
 
@@ -27,7 +27,8 @@ export class SignInComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Login');
+    // Removido para utilizar os dados da própria rota
+    /* this.titleService.setTitle('Login'); */
 
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
