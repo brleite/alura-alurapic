@@ -32,10 +32,10 @@ export class GlobalErrorHandler implements ErrorHandler {
     const message = error.message ? error.message : error.toString();
 
     console.log('Antes do router');
-    /* if (environment.production) { */
+    if (environment.production) {
       ngZone.run(() => router.navigate(['/error'])).then();
       // router.navigate(['/error']);
-    /* } */
+    }
     console.log('Depois do router');
 
     StackTrace
