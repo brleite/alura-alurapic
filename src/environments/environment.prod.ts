@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  ApiUrl: 'http://suaapientraaqui:3000'
+  ApiUrl: 'http://suaapientraaqui:3000',
+  serverLog: 'http://serserverlogaqui:7000'
 };
