@@ -39,7 +39,10 @@ export class PhotoDetailsComponent implements OnInit {
       .subscribe(
         () => {
           this.alertService.success('Photo removed!', true);
-          this.router.navigate(['/user', this.userService.getUserName()])
+          // Remove a rota atual da history API para que não seja possível voltar com o back button do browser
+          // A rota nova é incluída em seu lugar.
+          // É útil em operações de remoção, pois não faz sentido voltar para uma rota de algo inexistente
+          this.router.navigate(['/user', this.userService.getUserName()], {replaceUrl: true})
         },
         err => {
           console.log(err);
