@@ -29,6 +29,7 @@
     <ap-vmessage *ngIf="signupForm.get('password').errors?.required && (form.submitted || signupForm.get('password').touched)" text="Password is required"></ap-vmessage>
     <ap-vmessage *ngIf="signupForm.get('password').errors?.minlength && (form.submitted || signupForm.get('password').touched)" text="Minimun length is 8"></ap-vmessage>
     <ap-vmessage *ngIf="signupForm.get('password').errors?.maxlength && (form.submitted || signupForm.get('password').touched)" text="Maximum length is 14"></ap-vmessage>
+    <ap-vmessage *ngIf="signupForm.errors?.userNamePassword && form.submitted" text="Username and password must be different"></ap-vmessage>
   </div>
 
   <button class="btn btn-primary btn-block">Register</button>
