@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { PlatformDetectorService } from 'src/app/core/platform-detector/platform-detector.service';
 
@@ -10,6 +10,8 @@ import { PlatformDetectorService } from 'src/app/core/platform-detector/platform
 })
 export class SignInComponent implements OnInit, AfterViewInit {
 
+  fromUrl: string;
+
   loginForm: FormGroup;
   @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
 
@@ -17,7 +19,8 @@ export class SignInComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private platformDetectorService: PlatformDetectorService/* ,
+    private platformDetectorService: PlatformDetectorService,
+    private activatedRoute: ActivatedRoute/* ,
     private titleService: Title */) {
 
   }
@@ -29,6 +32,8 @@ export class SignInComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // Removido para utilizar os dados da própria rota
     /* this.titleService.setTitle('Login'); */
+
+    this.activatedRoute.queryParams.subscribe(params => this.fromUrl = params['fromUrl']);
 
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
@@ -46,7 +51,11 @@ export class SignInComponent implements OnInit, AfterViewInit {
         () => {
           // this.router.navigateByUrl('user/' + userName)
           // Mesma coisa que o de cima
-          this.router.navigate(['user', userName]);
+          if (this.fromUrl) {
+            this.router.navigateByUrl(this.fromUrl)
+          } else {
+            this.router.navigate(['user', userName]);
+          }
         },
         err => {
           console.log(err);
